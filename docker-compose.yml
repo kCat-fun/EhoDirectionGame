@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  parcel:
+    build: .
+    ports:
+      - "1234:1234"
+      - "443:1234"  # HTTPS のためのポート
+    volumes:
+      - .:/app
+      - ./ssl:/app/ssl  # 証明書をコンテナにマウント
+      - /app/node_modules
+    command: npm run dev
+    environment:
+      - NODE_ENV=development
